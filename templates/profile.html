@@ -12,8 +12,6 @@
 			{{ if after .silence_info.end }}
 				<div class="ui error centered message">{{ $global.T "User is <b>silenced</b> for %s, expires %s." (.silence_info.reason | htmlescaper) (time .silence_info.end) | html }}</div>
 			{{ end }}
-			{{ $meliodas  := has .privileges 7340031 }}
-			{{ $elizabeth  := has .id 999 }}
 			{{ if hasAdmin $global.Context.User.Privileges }}
 				{{ $restr := not (has .privileges 1) }}
 				{{ $disab := not (has .privileges 2) }}
@@ -85,7 +83,7 @@
 								</a>
 							{{ end }}
 							{{ if hasAdmin $global.Context.User.Privileges }}
-								<a href="https://old.themansions.nl/index.php?p=103&id={{ $global.UserID }}"
+								<a href="https://old.ripple.moe/index.php?p=103&id={{ $global.UserID }}"
 									target="_blank" title="Quick edit" class="ui circular mini blue icon button">
 									<i class="folder open outline icon"></i>
 								</a>
@@ -104,14 +102,8 @@
 				<div class="ui three column divided stackable grid">
 					<div class="row">
 						<div class="column">
-								{{if $meliodas }}
-								{{ $global.T "<b>%s</b> " .username | html }}
-								 is an <i class="red code small icon"></i><b>Owner</b> 
-								{{ $global.T " from <b>%s</b>." (country .country true) | html }}								
-							{{ else }}
-								{{ $global.T "<b>%s</b> is a player from <b>%s</b>." .username (country .country true) | html }}
-							{{ end }}
-							<br>{{ $global.T "They signed up on Mansions %s." (time $user.registered_on) | html }}
+							{{ $global.T "<b>%s</b> is a Ripple player from <b>%s</b>." .username (country .country true) | html }}
+							<br>{{ $global.T "They signed up on Ripple %s." (time $user.registered_on) | html }}
 							<br>{{ $global.T "Last seen: %s." (time $user.latest_activity) | html }}
 							<br>{{ with playstyle .play_style $global }}{{ $global.T "They play with %s." . }}{{ end }}
 						</div>

@@ -21,14 +21,14 @@ import (
 	"github.com/thehowl/qsql"
 	"gopkg.in/mailgun/mailgun-go.v1"
 	"gopkg.in/redis.v5"
-	"github.com/Mansions/hanayo2/modules/btcaddress"
-	"github.com/Mansions/hanayo2/modules/btcconversions"
-	"github.com/Mansions/hanayo2/routers/oauth"
-	"github.com/Mansions/hanayo2/routers/pagemappings"
-	"github.com/Mansions/hanayo2/services"
-	"github.com/Mansions/hanayo2/services/cieca"
-	"zxq.co/ripple/schiavolib"
 	"zxq.co/ripple/agplwarning"
+	"zxq.co/ripple/hanayo/modules/btcaddress"
+	"zxq.co/ripple/hanayo/modules/btcconversions"
+	"zxq.co/ripple/hanayo/routers/oauth"
+	"zxq.co/ripple/hanayo/routers/pagemappings"
+	"zxq.co/ripple/hanayo/services"
+	"zxq.co/ripple/hanayo/services/cieca"
+	"zxq.co/ripple/schiavolib"
 	"zxq.co/x/rs"
 )
 
@@ -120,18 +120,16 @@ func main() {
 	var configDefaults = map[*string]string{
 		&config.ListenTo:         ":45221",
 		&config.CookieSecret:     rs.String(46),
-		&config.AvatarURL:        "https://a.DOMAIN",
-		&config.AvatarsFolder:    "/home/ripple/avatar/avatars",
-		&config.RedisAddress:     "localhost:6379",
-		&config.BaseURL:          "https://DOMAIN",
-		&config.BanchoAPI:        "https://c.DOMAIN",
-		&config.CheesegullAPI:    "http://mirror/api",
-		&config.API:              "http://DOMAIN:40001/api/v1/",
+		&config.AvatarURL:        "https://a.ripple.moe",
+		&config.BaseURL:          "https://ripple.moe",
+		&config.BanchoAPI:        "https://c.ripple.moe",
+		&config.CheesegullAPI:    "https://storage.ripple.moe/api",
+		&config.API:              "http://localhost:40001/api/v1/",
 		&config.APISecret:        "Potato",
 		&config.IP_API:           "https://ip.zxq.co",
-		&config.DiscordServer:    "https://discord.gg/invite",
-		&config.MainRippleFolder: "/home/ripple",
-		&config.MailgunFrom:      `"Mansions" <erencorn@gmail.com>`,
+		&config.DiscordServer:    "#",
+		&config.MainRippleFolder: "/home/ripple/ripple",
+		&config.MailgunFrom:      `"Ripple" <noreply@ripple.moe>`,
 	}
 	for key, value := range configDefaults {
 		if *key == "" {
@@ -324,7 +322,7 @@ func generateEngine() *gin.Engine {
 	r.Any("/blog/*url", blogRedirect)
 
 	r.GET("/help", func(c *gin.Context) {
-		c.Redirect(301, "https://discord.gg/EbbMmBR")
+		c.Redirect(301, "https://support.ripple.moe")
 	})
 
 	loadSimplePages(r)
@@ -335,5 +333,5 @@ func generateEngine() *gin.Engine {
 }
 
 const alwaysRespondText = `Ooops! Looks like something went really wrong while trying to process your request.
-Perhaps report this to a Meliodas?
+Perhaps report this to a Ripple developer?
 Retrying doing again what you were trying to do might work, too.`

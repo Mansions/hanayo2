@@ -5,7 +5,7 @@
 <div class="ui secondary fixed-height stackable white background main menu no margin bottom{{ if .DisableHH }} dropped{{ end }}" id="navbar">
 	<div class="ui container">
 		<div class="item">
-			<b><a href="/" title="{{ .T "Home page" }}"><img class="mansion logo" src="/static/logos/text-{{ if $ds }}white{{ else }}black{{ end }}.png" alt="Mansions"></a></b>
+			<b><a href="/" title="{{ .T "Home page" }}"><img class="ripple logo" src="/static/logos/text-{{ if $ds }}white{{ else }}black{{ end }}.png" alt="Ripple"></a></b>
 		</div>
 		{{ if $isRAP }}
 			{{/*
@@ -19,11 +19,13 @@
 			<div class="ui dropdown item">
 				<span>{{ .T "Help" }}</span>
 				<div class="menu">
+					{{ navbarItem .Path (.T "About") "/about" }}
 					{{ navbarItem .Path (.T "Rules") "/doc/rules" }}
-					{{ navbarItem .Path (.T "Server switcher") "https://dl.themansions.nl/switcher.exe" }}
+					{{ navbarItem .Path (.T "Documentation") "/doc" }}
+					{{ navbarItem .Path (.T "Server switcher") "https://mu.nyodev.xyz/upd.php?id=18" }}
 					<div class="divider"></div>
 					{{ navbarItem .Path (.T "Chat (Discord)") .Conf.DiscordServer }}
-					{{ navbarItem .Path (.T "Contact support") "https://discord.gg/EbbMmBR" }}
+					{{ navbarItem .Path (.T "Contact support") "https://support.ripple.moe" }}
 				</div>
 			</div>
 			{{ if .Context.User.Username }}
@@ -35,7 +37,7 @@
 			</div>
 			{{ end }}
 			{{ navbarItem .Path (.T "Donate" | printf "<i class=\"red heart icon\"></i>%s") "/donate" }}
-			{{ if $isAdmin }}{{ navbarItem .Path (.T "RAP" | printf "<b>%s</b>") "https://old.themansions.nl/index.php?p=100" }}{{ end }}
+			{{ if $isAdmin }}{{ navbarItem .Path (.T "RAP" | printf "<b>%s</b>") "https://old.ripple.moe/index.php?p=100" }}{{ end }}
 		{{ end }}
 		<div class="firetrucking-right-menu">
 			<div class="item">
